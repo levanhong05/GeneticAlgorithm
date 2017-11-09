@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GAApplication</class>
+ <widget class="QMainWindow" name="GAApplication">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>681</width>
+    <height>437</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Genetic Algorithm Application</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="gaa_res.qrc">
+    <normaloff>:/ga/images/dna.png</normaloff>:/ga/images/dna.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>681</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuCalculate">
+    <property name="title">
+     <string>Calculate</string>
+    </property>
+    <widget class="QMenu" name="menuProjects">
+     <property name="title">
+      <string>Projects</string>
+     </property>
+     <addaction name="actionProject_1"/>
+     <addaction name="actionProject_2"/>
+     <addaction name="actionProject_3"/>
+     <addaction name="actionProject_4"/>
+     <addaction name="actionProject_5"/>
+     <addaction name="actionProject_6"/>
+     <addaction name="actionProject_7"/>
+     <addaction name="actionProject_8"/>
+     <addaction name="actionProject_9"/>
+     <addaction name="actionProject_10"/>
+    </widget>
+    <widget class="QMenu" name="menuPractices">
+     <property name="title">
+      <string>Practices</string>
+     </property>
+     <addaction name="actionTraveling_Salesman_Problem"/>
+     <addaction name="actionWord_Matching_Problem"/>
+     <addaction name="actionPrisoner_s_Dilemma"/>
+     <addaction name="separator"/>
+     <addaction name="actionMaximize_f_x_x"/>
+     <addaction name="actionMinimization_a_Sine_Function_with_Constraints"/>
+     <addaction name="actionMximizing_the_Function_f_x_x_sin_10_x_10"/>
+     <addaction name="separator"/>
+     <addaction name="actionQuadratic_Equation_Solving"/>
+    </widget>
+    <addaction name="menuPractices"/>
+    <addaction name="menuProjects"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuCalculate"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="gaa_res.qrc">
+     <normaloff>:/ga/images/system-shutdown.svg</normaloff>:/ga/images/system-shutdown.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="gaa_res.qrc">
+     <normaloff>:/ga/images/info.png</normaloff>:/ga/images/info.png</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionProject_1">
+   <property name="text">
+    <string>Project 1</string>
+   </property>
+  </action>
+  <action name="actionProject_2">
+   <property name="text">
+    <string>Project 2</string>
+   </property>
+  </action>
+  <action name="actionProject_3">
+   <property name="text">
+    <string>Project 3</string>
+   </property>
+  </action>
+  <action name="actionProject_4">
+   <property name="text">
+    <string>Project 4</string>
+   </property>
+  </action>
+  <action name="actionProject_5">
+   <property name="text">
+    <string>Project 5</string>
+   </property>
+  </action>
+  <action name="actionProject_6">
+   <property name="text">
+    <string>Project 6</string>
+   </property>
+  </action>
+  <action name="actionProject_7">
+   <property name="text">
+    <string>Project 7</string>
+   </property>
+  </action>
+  <action name="actionProject_8">
+   <property name="text">
+    <string>Project 8</string>
+   </property>
+  </action>
+  <action name="actionProject_9">
+   <property name="text">
+    <string>Project 9</string>
+   </property>
+  </action>
+  <action name="actionProject_10">
+   <property name="text">
+    <string>Project 10</string>
+   </property>
+  </action>
+  <action name="actionTraveling_Salesman_Problem">
+   <property name="text">
+    <string>Traveling Salesman Problem</string>
+   </property>
+  </action>
+  <action name="actionWord_Matching_Problem">
+   <property name="text">
+    <string>Word Matching Problem</string>
+   </property>
+  </action>
+  <action name="actionPrisoner_s_Dilemma">
+   <property name="text">
+    <string>Prisoner's Dilemma</string>
+   </property>
+  </action>
+  <action name="actionMaximize_f_x_x">
+   <property name="text">
+    <string>Maximize f(x)=x²</string>
+   </property>
+  </action>
+  <action name="actionMinimization_a_Sine_Function_with_Constraints">
+   <property name="text">
+    <string>Minimization a Sine Function with Constraints</string>
+   </property>
+  </action>
+  <action name="actionMximizing_the_Function_f_x_x_sin_10_x_10">
+   <property name="text">
+    <string>Mximizing the Function f(x)=x*sin(10*Π*x)+10</string>
+   </property>
+  </action>
+  <action name="actionQuadratic_Equation_Solving">
+   <property name="text">
+    <string>Quadratic Equation Solving</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="gaa_res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

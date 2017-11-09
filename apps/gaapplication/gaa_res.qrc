@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/ga">
+        <file>images/cover_image.png</file>
+        <file>images/quality.png</file>
+        <file>images/system-shutdown.svg</file>
+        <file>images/eraser.png</file>
+        <file>images/info.png</file>
+        <file>images/logo.ico</file>
+        <file>images/dna.png</file>
+    </qresource>
+</RCC>
