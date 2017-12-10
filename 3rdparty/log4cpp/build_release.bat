@@ -6,7 +6,7 @@ echo setting environment variables;
 
 set PATH=%PATH%;C:\Program Files (x86)\CMake\bin\
 
-cd msvc12
+cd msvc14
 
 msbuild /P:Configuration=Release log4cppLIB/log4cppLIB.vcxproj
 

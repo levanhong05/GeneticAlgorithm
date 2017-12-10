@@ -19,18 +19,18 @@ CONFIG(release, debug|release){
     liblog4cpp.commands = "$(COPY_DIR) $$replace(SOURCEPATH,/,\\) && call build_release.bat"
     liblog4cpp.depends = Makefile
 
-    first.targets = msvc12/log4cpp/x64/Release/log4cpp.dll
+    first.targets = msvc14/log4cpp/x64/Release/log4cpp.dll
     first.depends = liblog4cpp
 
-    QMAKE_CLEAN += msvc12/log4cpp/x64/Release/log4cpp.dll
+    QMAKE_CLEAN += msvc14/log4cpp/x64/Release/log4cpp.dll
 } else {
     liblog4cpp.commands = "$(COPY_DIR) $$replace(SOURCEPATH,/,\\) && call build.bat"
     liblog4cpp.depends = Makefile
 
-    first.targets = msvc12/log4cpp/x64/Debug/log4cpp.dll
+    first.targets = msvc14/log4cpp/x64/Debug/log4cpp.dll
     first.depends = liblog4cpp
 
-    QMAKE_CLEAN += msvc12/log4cpp/x64/Debug/log4cpp.dll
+    QMAKE_CLEAN += msvc14/log4cpp/x64/Debug/log4cpp.dll
 }
     QMAKE_EXTRA_TARGETS += first liblog4cpp
     TARGET = liblog4cpp
