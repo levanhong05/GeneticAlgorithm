@@ -6,7 +6,7 @@ echo setting environment variables;
 
 set PATH=%PATH%;C:\Program Files (x86)\CMake\bin\
 
-git apply --stat windows.patch
+git apply -v windows.patch
 
 cd msvc14
 

@@ -53,6 +53,24 @@ win32:LIBS += -L$$OUT_PWD/../../dist/bin -lconsole
 INCLUDEPATH += $$PWD/../../modules/console
 DEPENDPATH += $$PWD/../../modules/console
 
+win32:LIBS += -L$$OUT_PWD/../../dist/bin/ -lexecutor
+unix: LIBS += -L$$OUT_PWD/../../modules/executor/ -lexecutor
+
+INCLUDEPATH += $$PWD/../../modules/executor
+DEPENDPATH += $$PWD/../../modules/executor
+
+win32:LIBS += -L$$OUT_PWD/../../dist/bin/ -lexecutors
+unix: LIBS += -L$$OUT_PWD/../../modules/executors/ -lexecutors
+
+INCLUDEPATH += $$PWD/../../modules/executors
+DEPENDPATH += $$PWD/../../modules/executors
+
+win32:LIBS += -L$$OUT_PWD/../../dist/bin/ -lworkspace
+unix: LIBS += -L$$OUT_PWD/../../modules/workspace/ -lworkspace
+
+INCLUDEPATH += $$PWD/../../modules/workspace
+DEPENDPATH += $$PWD/../../modules/workspace
+
 win32:RC_FILE = gaapplication.rc
 
 RESOURCES += \
