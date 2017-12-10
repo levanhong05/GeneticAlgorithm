@@ -13,8 +13,6 @@ TEMPLATE = lib
 
 DEFINES += CONSOLE_LIBRARY
 
-INCLUDEPATH += ../../apps/dofi
-
 SOURCES += \
     console.cpp \
     consoledock.cpp \

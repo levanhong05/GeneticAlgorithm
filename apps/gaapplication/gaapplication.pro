@@ -71,6 +71,12 @@ unix: LIBS += -L$$OUT_PWD/../../modules/workspace/ -lworkspace
 INCLUDEPATH += $$PWD/../../modules/workspace
 DEPENDPATH += $$PWD/../../modules/workspace
 
+win32:LIBS += -L$$OUT_PWD/../../dist/bin/ -ltravelingsalesman
+unix: LIBS += -L$$OUT_PWD/../../modules/travelingsalesman/ -ltravelingsalesman
+
+INCLUDEPATH += $$PWD/../../modules/travelingsalesman
+DEPENDPATH += $$PWD/../../modules/travelingsalesman
+
 win32:RC_FILE = gaapplication.rc
 
 RESOURCES += \

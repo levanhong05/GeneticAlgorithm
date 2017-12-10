@@ -41,10 +41,6 @@ public slots:
 private slots:
     void onErrorLogging(QString);
 
-    void onResultLogging(QString result);
-
-    void onTestLogging(QString result);
-
 signals:
     void sentenceDetect(QString sentence);
 

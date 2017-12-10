@@ -62,38 +62,6 @@ void Executors::onErrorLogging(QString log)
     console.logError(log);
 }
 
-void Executors::onResultLogging(QString result)
-{
-    if (result == "====================== HTK Results Analysis =======================") {
-        _isWrite = true;
-        console.log("");
-    }
-
-    if (result == "===================================================================") {
-        console.logInfo(result);
-
-        console.log("");
-        _isWrite = false;
-    }
-
-    if (_isWrite && !result.isEmpty()) {
-        console.logInfo(result);
-    }
-}
-
-void Executors::onTestLogging(QString result)
-{
-    if (result.endsWith(".mfc")) {
-        console.logInfo(result);
-    } else if (result.trimmed().startsWith("SENT-START") && result.contains("==") && result.contains("frames]")) {
-        console.logExtend(result);
-
-        emit sentenceDetect(result);
-
-        console.log("");
-    }
-}
-
 bool Executors::removeDir(QString dirName)
 {
     bool result = true;

@@ -7,4 +7,5 @@ SUBDIRS += \
     logger \
     console \
     executor \
-    executors
+    executors \
+    travelingsalesman

@@ -21,6 +21,8 @@ private slots:
 
     void on_actionAbout_triggered();
 
+    void on_actionTraveling_Salesman_Problem_triggered();
+
 private:
     Ui::GAApplication *ui;
 };

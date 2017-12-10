@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TravelingSalesman</class>
+ <widget class="QWidget" name="TravelingSalesman">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>865</width>
+    <height>721</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>417</width>
+          <height>699</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>The Problem</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;In traveling salesman problem, salesman travels n cities and returns to the starting city with the minimal cost, he is not allowed to cross the city more than once. In this problem we are taking the assumption that all the n cities are inter connected. The cost indicates the distance between two cities. To solve this problem we make use of genetic algorithm because the cities are randomly. Initial population for this problem is randomly selected cities. Fitness function is nothing but the minimum cost. Initially the fitness function is set to the maximum value and for each travel, the cost is calculated and compared with the fitness function. The new fitness value is assigned to the minimum cost. Initial population is randomly chosen and taken as the parent. For the next generation, the cyclic crossover is applied over the parent.&lt;/p&gt;&lt;p&gt;Cyclic Crossover&lt;/p&gt;&lt;p&gt;Let P1 and P2 are two parents&lt;/p&gt;&lt;p&gt;P1: 2 8 0 1 3 4 5 7 9 6&lt;/p&gt;&lt;p&gt;P2: 1 0 5 4 6 8 9 7 2 3&lt;/p&gt;&lt;p&gt;Select the first city of P1 make it as the first city of offspring1(01)&lt;/p&gt;&lt;p&gt;O1: 2 - - - - - - - - -&lt;/p&gt;&lt;p&gt;To find the next city of offspring O1 search current city, which is selected from&lt;/p&gt;&lt;p&gt;P1 in P2. Find the location of city in P2 and select the city which is in the same&lt;/p&gt;&lt;p&gt;location in P1.&lt;/p&gt;&lt;p&gt;O1: 2 - - - - - - - 9 -&lt;/p&gt;&lt;p&gt;Continue the same procedure, we will get O1 as&lt;/p&gt;&lt;p&gt;O1: 2 8 0 1 - 4 5 - 9 -&lt;/p&gt;&lt;p&gt;In the next step we will get the city 2 which is already present in O1 and then stop the procedure. Copy the cities from parent P2 in the corresponding locations&lt;/p&gt;&lt;p&gt;O1: 2 8 0 1 6 4 5 7 9 3&lt;/p&gt;&lt;p&gt;For the generation offspring O2 the initial selection is from the parent P2, and repeat the procedure with P1&lt;/p&gt;&lt;p&gt;O2: 1 5 4 3 8 9 7 2 6&lt;/p&gt;&lt;p&gt;If the initial population contain N parents it will generate N(N-1)/2 offsprings.&lt;/p&gt;&lt;p&gt;The next generation the offsprings are considered as parent. The procedure is continued for N number of generation to find the minimum cost.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="lblNumberGeneration">
+         <property name="text">
+          <string>Number of Generation</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txtNumberGeneration">
+         <property name="text">
+          <string>2</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnRun">
+       <property name="text">
+        <string>Run</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="txtResult"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -5,7 +5,7 @@ CONFIG += ordered
 SUBDIRS += \
     3rdparty \
     modules \
-    apps
+    apps \
 
 RESOURCES += \
     apps/gaapplication/speech_res.qrc

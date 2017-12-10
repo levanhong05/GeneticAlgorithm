@@ -5,6 +5,8 @@
 
 #include "aboutscreen.h"
 
+#include "travelingsalesman.h"
+
 using namespace GeneticAlgorithm;
 
 GAApplication::GAApplication(QWidget *parent) :
@@ -33,4 +35,12 @@ void GAApplication::on_actionAbout_triggered()
     AboutScreen *screen = new AboutScreen();
 
     screen->show();
+}
+
+void GAApplication::on_actionTraveling_Salesman_Problem_triggered()
+{
+    TravelingSalesman *salemans = new TravelingSalesman(this);
+
+    //this->addDockWidget(Qt::TopDockWidgetArea, (QDockWidget*)salemans);
+    salemans->show();
 }
