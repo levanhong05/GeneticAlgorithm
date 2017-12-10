@@ -1,0 +1,19 @@
+ 3rdparty/log4cpp/src/snprintf.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/3rdparty/log4cpp/src/snprintf.c b/3rdparty/log4cpp/src/snprintf.c
+index f33fe17..acb0559 100644
+--- a/3rdparty/log4cpp/src/snprintf.c
++++ b/3rdparty/log4cpp/src/snprintf.c
+@@ -394,9 +394,9 @@ int vasnprintf (char **ptr, size_t str_m, const char *fmt, va_list ap);
+ /* declare our portable vsnprintf routine under name portable_vsnprintf */
+ #else
+ /* declare our portable routines under names snprintf and vsnprintf */
+-#define portable_snprintf snprintf
++//#define portable_snprintf snprintf
+ #if !defined(NEED_SNPRINTF_ONLY)
+-#define portable_vsnprintf vsnprintf
++//#define portable_vsnprintf vsnprintf
+ #endif
+ #endif
+ 
