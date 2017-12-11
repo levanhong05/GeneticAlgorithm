@@ -3,9 +3,9 @@ TEMPLATE = subdirs
 CONFIG += ordered
 
 SUBDIRS += \
-    workspace \
     logger \
     console \
+    workspace \
     executor \
     executors \
     travelingsalesman
