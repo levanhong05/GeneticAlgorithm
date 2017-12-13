@@ -6,6 +6,8 @@
 #include "aboutscreen.h"
 
 #include "travelingsalesman.h"
+#include "wordmatchingproblem.h"
+#include "prisonerdilemma.h"
 
 using namespace GeneticAlgorithm;
 
@@ -144,4 +146,18 @@ void GAApplication::on_tabWidget_tabCloseRequested(int index)
     ui->tabWidget->widget(index)->close();
 
     removeTab(ui->tabWidget->widget(index));
+}
+
+void GAApplication::on_actionPrisoner_s_Dilemma_triggered()
+{
+    PrisonerDilemma *prisoner = new PrisonerDilemma(this);
+
+    this->addTab("PDP", prisoner);
+}
+
+void GAApplication::on_actionWord_Matching_Problem_triggered()
+{
+    WordMatchingProblem *word = new WordMatchingProblem(this);
+
+    this->addTab("WMP", word);
 }

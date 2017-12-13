@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WordMatchingProblem</class>
+ <widget class="QWidget" name="WordMatchingProblem">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1026</width>
+    <height>525</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>497</width>
+          <height>503</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>The Problem</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Freeman stated this problem in his work &lt;span style=&quot; font-style:italic;&quot;&gt;Simulating Neural Networks with Mathematics&lt;/span&gt;. It is a nice example to show the power of genetic algorithms. The word-matching problem tries to evolve an expression of “to be or not to be” from the randomly generated lists of letters with genetic algorithm. Since there are 26 possible letters for each of 13 locations in the list, the probability that we get the correct phrase in a pure random way is (1/26)&lt;span style=&quot; vertical-align:super;&quot;&gt;13 &lt;/span&gt;= 4.03038 ∗ 10&lt;span style=&quot; vertical-align:super;&quot;&gt;−19&lt;/span&gt;, which is abouttwo chances out of a billion.&lt;/p&gt;&lt;p&gt;We use a list of ASCII integers to encode the string of letters. The lower case letters in ASCII are represented by numbers in the range [97,122] in the decimal number system. For example, the string of letters tobeornottobe is converted into the following chromosome represented with ASCII integers:&lt;/p&gt;&lt;p&gt;[116,111,98,101,111,114,110,111,116,116,111,98,101]&lt;/p&gt;&lt;p&gt;Initial population is generated randomly. Fitness is calculated as the number of matched letters. Genetic operators are used to obtain the output. This problem is implemented in C and the output is obtained.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="lblNumberGeneration">
+         <property name="text">
+          <string>Enter the Word</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txtNumberGeneration">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnRun">
+       <property name="text">
+        <string>Run</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPlainTextEdit" name="txtResult"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

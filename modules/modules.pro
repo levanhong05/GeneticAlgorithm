@@ -8,4 +8,6 @@ SUBDIRS += \
     workspace \
     executor \
     executors \
-    travelingsalesman
+    travelingsalesman \
+    wordmatchingproblem \
+    prisonerdilemma

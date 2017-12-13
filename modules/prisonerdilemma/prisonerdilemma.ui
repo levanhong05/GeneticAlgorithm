@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PrisonerDilemma</class>
+ <widget class="QWidget" name="PrisonerDilemma">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1155</width>
+    <height>749</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PrisonerDilemma</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_3">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>561</width>
+            <height>725</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>The Problem</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cooperation is usually analyzed in game theory by means of a non-zero-sum game called the “&lt;span style=&quot; font-weight:600; font-style:italic;&quot;&gt;Prisoner’s Dilemma&lt;/span&gt;”. The two players in the game can choose between two moves, either &lt;span style=&quot; font-style:italic;&quot;&gt;“cooperate&lt;/span&gt;” or “&lt;span style=&quot; font-style:italic;&quot;&gt;defect&lt;/span&gt;”. The idea is that each player gains when both cooperate, but if only one of them cooperates, the other one, who defects, will gain more. If both defect, both lose (or gain very little) but not as much as the “&lt;span style=&quot; font-style:italic;&quot;&gt;cheated&lt;/span&gt;” cooperator whose cooperation is not returned. The whole game situation and its different outcomes can be summarized by table below, where hypothetical “&lt;span style=&quot; font-style:italic;&quot;&gt;points&lt;/span&gt;” are given as an example of how the differences in result might be quantified.&lt;/p&gt;&lt;p&gt;Action of A / Action B                      Cooperate                        Defect&lt;/p&gt;&lt;p&gt;Cooperate Fairly good [+5] Bad [-10]&lt;/p&gt;&lt;p&gt;Defect Good [+10] Mediocre [0]&lt;/p&gt;&lt;p&gt;The type of crossover that is performed is a “&lt;span style=&quot; font-style:italic;&quot;&gt;single point crossover&lt;/span&gt;” where the point of crossover is randomly selected. The mutation is expected to happen every two thousand generation. It is easy to change the mutation as it is implemented as a separate function.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="lblNumberGeneration">
+           <property name="text">
+            <string>Number of Generation</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txtNumberGeneration">
+           <property name="text">
+            <string>5</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnRun">
+         <property name="text">
+          <string>Run</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="txtResult"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

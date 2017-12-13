@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-12-10T12:05:24
+# Project created by QtCreator 2017-12-13T19:51:53
 #
 #-------------------------------------------------
 
@@ -8,12 +8,12 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-unix:TARGET = travelingsalesman
-win32:TARGET = ../../../dist/bin/travelingsalesman
+unix:TARGET = wordmatchingproblem
+win32:TARGET = ../../../dist/bin/wordmatchingproblem
 
 TEMPLATE = lib
 
-DEFINES += TRAVELINGSALESMAN_LIBRARY
+DEFINES += WORDMATCHINGPROBLEM_LIBRARY
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -27,11 +27,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    travelingsalesman.cpp
+        wordmatchingproblem.cpp
 
 HEADERS += \
-        travelingsalesman_global.h \ 
-    	travelingsalesman.h
+        wordmatchingproblem.h \
+        wordmatchingproblem_global.h 
 
 win32:LIBS += -L$$OUT_PWD/../../dist/bin/ -llogger
 unix:LIBS += -L$$OUT_PWD/../../modules/logger/ -llogger
@@ -51,4 +51,4 @@ unix {
 }
 
 FORMS += \
-    travelingsalesman.ui
+    wordmatchingproblem.ui

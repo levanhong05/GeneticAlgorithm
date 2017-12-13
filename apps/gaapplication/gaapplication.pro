@@ -29,12 +29,12 @@ SOURCES += \
             main.cpp \
             aboutscreen.cpp \
             gaapplication.cpp \
-    application.cpp
+            application.cpp
 
 HEADERS += \
             aboutscreen.h \
             gaapplication.h \
-    application.h
+            application.h
 
 FORMS += \
             aboutscreen.ui \
@@ -76,6 +76,18 @@ unix: LIBS += -L$$OUT_PWD/../../modules/travelingsalesman/ -ltravelingsalesman
 
 INCLUDEPATH += $$PWD/../../modules/travelingsalesman
 DEPENDPATH += $$PWD/../../modules/travelingsalesman
+
+win32:LIBS += -L$$OUT_PWD/../../dist/bin/ -lprisonerdilemma
+unix: LIBS += -L$$OUT_PWD/../../modules/prisonerdilemma/ -lprisonerdilemma
+
+INCLUDEPATH += $$PWD/../../modules/prisonerdilemma
+DEPENDPATH += $$PWD/../../modules/prisonerdilemma
+
+win32:LIBS += -L$$OUT_PWD/../../dist/bin/ -lwordmatchingproblem
+unix: LIBS += -L$$OUT_PWD/../../modules/wordmatchingproblem/ -lwordmatchingproblem
+
+INCLUDEPATH += $$PWD/../../modules/wordmatchingproblem
+DEPENDPATH += $$PWD/../../modules/wordmatchingproblem
 
 win32:RC_FILE = gaapplication.rc
 

@@ -44,6 +44,10 @@ private slots:
 
     void on_tabWidget_tabCloseRequested(int index);
 
+    void on_actionPrisoner_s_Dilemma_triggered();
+
+    void on_actionWord_Matching_Problem_triggered();
+
 private:
     Ui::GAApplication *ui;
 
