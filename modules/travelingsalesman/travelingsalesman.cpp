@@ -31,6 +31,8 @@ TravelingSalesman::TravelingSalesman(QWidget *parent) :
         _pa.push_back({0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
     }
 
+    ui->txtNumberGeneration->setValidator(new QIntValidator(1, INT_MAX));
+
     gen = 0;
 }
 
@@ -46,6 +48,8 @@ QString GeneticAlgorithm::TravelingSalesman::name()
 
 void TravelingSalesman::execute()
 {
+    ui->txtResult->clear();
+
     offcal1(_pa);
     offcal2(_pa);
 

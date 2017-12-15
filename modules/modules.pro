@@ -10,4 +10,5 @@ SUBDIRS += \
     executors \
     travelingsalesman \
     wordmatchingproblem \
-    prisonerdilemma
+    prisonerdilemma \
+    quadraticequationsolving

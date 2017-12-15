@@ -12,6 +12,19 @@ WordMatchingProblem::WordMatchingProblem(QWidget *parent) :
     ui->setupUi(this);
 
     gen = 0;
+
+    for (int i = 0; i < 50; i++) {
+        pfit[i] = 0;
+        cfit[i] = 0;
+    }
+
+    for (int i = 0; i < 150; i++) {
+        fit[i] = 0;
+    }
+
+    for (int i = 0; i < 5; i++) {
+        mfit[i] = 0;
+    }
 }
 
 WordMatchingProblem::~WordMatchingProblem()
@@ -26,7 +39,7 @@ QString WordMatchingProblem::name()
 
 void WordMatchingProblem::execute()
 {
-    int i, choice;
+    ui->txtResult->clear();
 
     getInput();
     initialPop();
@@ -35,17 +48,13 @@ void WordMatchingProblem::execute()
     reproduction(); //sorting_based_on_fitness();
     display();
 
-    printf("\nENTER YOUR CHOICE (TO CONTINUE 1 TO EXIT 0) : ");
-
-    scanf("%d", &choice);
-
-    while ((choice == 1) && (pfit[0] != strlen(input))) {
+    if (pfit[0] != _input.length()) {
         crossover();
         gen++;
         mutation();
         reproduction(); //sorting_based_on_fitness();
         display();
-        choice = inputChoice();
+        inputChoice();
     }
 
     results();
@@ -53,35 +62,38 @@ void WordMatchingProblem::execute()
 
 void WordMatchingProblem::getInput()
 {
-    printf("\n\n\n\t\tWORD MATCHING PROBLEM");
-    printf("\n\t **************************************");
-    printf("\n\n\n\n\t\tENTER THE WORD TO BE MATCHED : ");
-    scanf("%s", input);
-    printf("\n\n\n\t THE ASCII EQUIVALENT OF THE LETTERS IN THE ENTERED WORD");
-    printf("\n\t------- ------- ------- ");
-    printf("\n\n LETTERS :");
+    ui->txtResult->insertPlainText("WORD MATCHING PROBLEM");
+    ui->txtResult->insertPlainText("\n **************************************");
+    ui->txtResult->insertPlainText("\n\n\n\nTHE WORD TO BE MATCHED : ");
 
-    for (int i = 0; i < strlen(input); i++) {
-        printf(" %c ", input[i]);
+    _input = ui->txtWordMatch->text();
+
+    ui->txtResult->insertPlainText(_input);
+
+    ui->txtResult->insertPlainText("\n\n\n THE ASCII EQUIVALENT OF THE LETTERS IN THE ENTERED WORD");
+    ui->txtResult->insertPlainText("\n------- ------- ------- ");
+    ui->txtResult->insertPlainText("\n\n LETTERS :");
+
+    for (int i = 0; i < _input.length(); i++) {
+        ui->txtResult->insertPlainText(" " + _input[i] + " ");
     }
 
-    printf("\n ASCII :");
+    ui->txtResult->insertPlainText("\n ASCII :");
 
-    for (int i = 0; i < strlen(input); i++) {
-        printf(" %3d", input[i]);
+    for (int i = 0; i < _input.length(); i++) {
+        int code = _input[i].toLatin1();
+
+        ui->txtResult->insertPlainText(" " + QString::number(code));
     }
 }
 
 void WordMatchingProblem::initialPop()
 {
-    int i, j;
-    randomize();
+    for (int i = 0; i < 50; i++) {
+        for (int j = 0; j < _input.length(); j++) {
+            _parent[i][j] = qrand() % 27 + 97;
 
-    for (i = 0; i < 50; i++) {
-        for (j = 0; j < strlen(input); j++) {
-            parent[i][j] = random(26) + 97;
-
-            if (parent[i][j] == input[j]) {
+            if (_parent[i][j] == _input[j]) {
                 pfit[i]++;
             }
         }
@@ -90,95 +102,99 @@ void WordMatchingProblem::initialPop()
 
 void WordMatchingProblem::display()
 {
-    int i, j, nexti;
-    clrscr();
-    printf("\n\n\t\t THE CHROMOSOMES OF PARENTS AND CHILDREN");
-    printf("\n\t---- ------ ------- --\n");
-    printf("\n\t\t PREVIOUS GENERATION CHILDREN CHROMOSOMES\n\n");
+    ui->txtResult->insertPlainText("\n\n THE CHROMOSOMES OF PARENTS AND CHILDREN");
+    ui->txtResult->insertPlainText("\n---- ------ ------- --\n");
+    ui->txtResult->insertPlainText("\n PREVIOUS GENERATION CHILDREN CHROMOSOMES\n\n");
 
-    for (i = 0; i < 50; i++) {
-        if (((i) % 4) == 0) {
-            printf("\n");
+    for (int i = 0; i < 50; i++) {
+        if ((i % 4) == 0) {
+            ui->txtResult->insertPlainText("\n");
         }
 
-        for (j = 0; j < strlen(input); j++) {
-            printf("%c", child[i][j]);
+        for (int j = 0; j < _input.length(); j++) {
+            ui->txtResult->insertPlainText(QString (_child[i][j]));
         }
 
-        printf("% 2d ", cfit[i]);
+        ui->txtResult->insertPlainText("\t");
+
+        ui->txtResult->insertPlainText(QString::number(cfit[i]));
+
+        ui->txtResult->insertPlainText("\t");
     }
 
-    printf("\n\t\t\tMUTANTS OF THIS GENERATION\n");
+    ui->txtResult->insertPlainText("\nMUTANTS OF THIS GENERATION\n");
 
-    for (i = 0; i < 05; i++) {
+    for (int i = 0; i < 5; i++) {
         if (i == 3) {
-            printf("\n");
+            ui->txtResult->insertPlainText("\n");
         }
 
-        for (j = 0; j < strlen(input); j++) {
-            printf("%c", mutant[i][j]);
+        for (int j = 0; j < _input.length(); j++) {
+            ui->txtResult->insertPlainText(QString (_mutant[i][j]));
         }
 
-        printf("% 2d ", mfit[i]);
+        ui->txtResult->insertPlainText("\t");
+
+        ui->txtResult->insertPlainText(QString::number(mfit[i]));
+
+        ui->txtResult->insertPlainText("\t");
     }
 
-    getch();
-    clrscr();
-    printf("\n\n\t\t THE CHROMOSOMES OF PARENTS AND CHILDREN");
-    printf("\n\t---- ------ ------\n");
-    printf("\n\t\t NEXT GENERATION PARENTS CHROMOSOMES\n\n");
+    ui->txtResult->insertPlainText("\n\n THE CHROMOSOMES OF PARENTS AND CHILDREN");
+    ui->txtResult->insertPlainText("\n---- ------ ------\n");
+    ui->txtResult->insertPlainText("\n NEXT GENERATION PARENTS CHROMOSOMES\n\n");
 
-    for (i = 0; i < 50; i++) {
-        if (((i) % 4) == 0) {
-            printf("\n");
+    for (int i = 0; i < 50; i++) {
+        if ((i % 4) == 0) {
+            ui->txtResult->insertPlainText("\n");
         }
 
-        for (j = 0; j < strlen(input); j++) {
-            printf("%c", parent[i][j]);
+        for (int j = 0; j < _input.length(); j++) {
+            ui->txtResult->insertPlainText(QString (_parent[i][j]));
         }
 
-        printf("% 2d ", pfit[i]);
+        ui->txtResult->insertPlainText("\t");
+
+        ui->txtResult->insertPlainText(QString::number(pfit[i]));
+
+        ui->txtResult->insertPlainText("\t");
     }
-
-    getch();
 }
 
 void WordMatchingProblem::reproduction() //sorting_based_on_fitness()
 {
-    char tempc;
+    QChar tempc;
     int temp;
-    int i, j, k;
 
-    for (i = 0; i < 50; i++) {
-        for (j = 0; j < strlen(input); j++) {
-            mating_pool[i][j] = parent[i][j];
+    for (int i = 0; i < 50; i++) {
+        for (int j = 0; j < _input.length(); j++) {
+            _mating_pool[i][j] = _parent[i][j];
             fit[i] = pfit[i];
         }
     }
 
-    for (i = 50; i < 100; i++) {
-        for (j = 0; j < strlen(input); j++) {
-            mating_pool[i][j] = child[i - 50][j];
+    for (int i = 50; i < 100; i++) {
+        for (int j = 0; j < _input.length(); j++) {
+            _mating_pool[i][j] = _child[i - 50][j];
             fit[i] = cfit[i - 50];
         }
     }
 
-    for (i = 100; i < 105; i++) {
-        for (j = 0; j < strlen(input); j++) {
-            mating_pool[i][j] = mutant[i - 100][j];
+    for (int i = 100; i < 105; i++) {
+        for (int j = 0; j < _input.length(); j++) {
+            _mating_pool[i][j] = _mutant[i - 100][j];
             fit[i] = mfit[i - 100];
         }
     }
 
 //sorting
-    for (i = 0; i < 105; i++) {
-        for (j = i + 1; j < 105; j++) {
+    for (int i = 0; i < 105; i++) {
+        for (int j = i + 1; j < 105; j++) {
             if (fit[i] < fit[j]) {
-                for (k = 0; k < strlen(input); k++) {
-                    tempc = mating_pool[i][k];
-                    mating_pool[i][k] =
-                        mating_pool[j][k];
-                    mating_pool[j][k] = tempc;
+                for (int k = 0; k < _input.length(); k++) {
+                    tempc = _mating_pool[i][k];
+                    _mating_pool[i][k] = _mating_pool[j][k];
+                    _mating_pool[j][k] = tempc;
                     temp = fit[i];
                     fit[i] = fit[j];
                     fit[j] = temp;
@@ -187,16 +203,16 @@ void WordMatchingProblem::reproduction() //sorting_based_on_fitness()
         }
     }
 
-    for (i = 0; i < 50; i++) {
-        for (j = 0; j < strlen(input); j++) {
-            parent[i][j] = mating_pool[i][j];
+    for (int i = 0; i < 50; i++) {
+        for (int j = 0; j < _input.length(); j++) {
+            _parent[i][j] = _mating_pool[i][j];
             pfit[i] = fit[i];
         }
     }
 
-    for (i = 50; i < 100; i++) {
-        for (j = 0; j < strlen(input); j++) {
-            child[i - 50][j] = mating_pool[i][j];
+    for (int i = 50; i < 100; i++) {
+        for (int j = 0; j < _input.length(); j++) {
+            _child[i - 50][j] = _mating_pool[i][j];
             cfit[i - 50] = fit[i];
         }
     }
@@ -205,37 +221,36 @@ void WordMatchingProblem::reproduction() //sorting_based_on_fitness()
 void WordMatchingProblem::crossover()
 {
     int xover_pt;
-    int i, j, k;
 
-    for (i = 0; i < 50; i++) {
-        xover_pt = random(strlen(input));
+    for (int i = 0; i < 50; i++) {
+        xover_pt = qrand() % (_input.length());
         cfit[i] = 0;
         cfit[i + 1] = 0;
 
-        for (j = 0; j < xover_pt; j++) {
-            child[i][j] = parent[i][j];
+        for (int j = 0; j < xover_pt; j++) {
+            _child[i][j] = _parent[i][j];
 
-            if (input[j] == child[i][j]) {
+            if (_input[j] == _child[i][j]) {
                 cfit[i]++;
             }
 
-            child[i + 1][j] = parent[i + 1][j];
+            _child[i + 1][j] = _parent[i + 1][j];
 
-            if (input[j] == child[i + 1][j]) {
+            if (_input[j] == _child[i + 1][j]) {
                 cfit[i + 1]++;
             }
         }
 
-        for (j = xover_pt; j < strlen(input); j++) {
-            child[i][j] = parent[i + 1][j];
+        for (int j = xover_pt; j < _input.length(); j++) {
+            _child[i][j] = _parent[i + 1][j];
 
-            if (input[j] == child[i][j]) {
+            if (_input[j] == _child[i][j]) {
                 cfit[i]++;
             }
 
-            child[i + 1][j] = parent[i][j];
+            _child[i + 1][j] = _parent[i][j];
 
-            if (input[j] == child[i + 1][j]) {
+            if (_input[j] == _child[i + 1][j]) {
                 cfit[i + 1]++;
             }
         }
@@ -246,33 +261,35 @@ void WordMatchingProblem::crossover()
 
 void WordMatchingProblem::mutation()
 {
-    int i, mut_pt, j;
+    int mut_pt;
     char mut_val;
-    randomize();
 
-    for (i = 0; i < 05; i++) {
-        mut_pt = random(strlen(input));
-        mut_val = random(26) + 97;
+    int j;
+
+    for (int i = 0; i < 05; i++) {
+        mut_pt = qrand() % _input.length();
+        mut_val = qrand() % 27 + 97;
+
         mfit[i] = 0;
 
         for (j = 0; j < mut_pt; j++) {
-            mutant[i][j] = parent[1][j];
+            _mutant[i][j] = _parent[1][j];
 
-            if (mutant[i][j] == input[j]) {
+            if (_mutant[i][j] == _input[j]) {
                 mfit[i]++;
             }
         }
 
-        mutant[i][mut_pt] = mut_val;
+        _mutant[i][mut_pt] = mut_val;
 
-        if (mutant[i][j] == input[j]) {
+        if (_mutant[i][j] == _input[j]) {
             mfit[i]++;
         }
 
-        for (j = mut_pt + 1; j < strlen(input); j++) {
-            mutant[i][j] = parent[1][j];
+        for (j = mut_pt + 1; j < _input.length(); j++) {
+            _mutant[i][j] = _parent[1][j];
 
-            if (mutant[i][j] == input[j]) {
+            if (_mutant[i][j] == _input[j]) {
                 mfit[i]++;
             }
         }
@@ -281,50 +298,48 @@ void WordMatchingProblem::mutation()
 
 void WordMatchingProblem::results()
 {
-    int i;
-    clrscr();
-    printf("\n\n\n\t\tWORD MATCHING PROBLEM ");
-    printf("\n\t ****************************************");
-    printf("\n\n\n\t\t THE MATCHING WORD FOR THE GIEN INPUT WORD");
-    printf("\n\n\t\t OBTAINED USING GENETIC ALGORITHM");
-    printf("\n\n\t\t\t ");
+    ui->txtResult->insertPlainText("\n\n\nWORD MATCHING PROBLEM ");
+    ui->txtResult->insertPlainText("\n ****************************************");
+    ui->txtResult->insertPlainText("\n\n\n THE MATCHING WORD FOR THE GIEN INPUT WORD");
+    ui->txtResult->insertPlainText("\n\n OBTAINED USING GENETIC ALGORITHM");
+    ui->txtResult->insertPlainText("\n\n ");
 
-    for (i = 0; i < strlen(input); i++) {
-        printf("%c", parent[0][i]);
+    for (int i = 0; i < _input.length(); i++) {
+        ui->txtResult->insertPlainText(QString (_parent[0][i]));
     }
 
-    printf("\n\t\t\t –");
+    ui->txtResult->insertPlainText("\n –");
 
-    for (i = 0; i < strlen(input); i++) {
-        printf("-");
+    for (int i = 0; i < _input.length(); i++) {
+        ui->txtResult->insertPlainText("-");
     }
 
-    printf("–\n\n\n\t\t USER INPUT : %s", input);
-    printf("\n\n\n\t THE FITNESS OF THE GA GENERATED WORD AND THE USER’S INPUT");
-    printf("\n\n\t\t\t\t %2d/%d", pfit[0], strlen(input));
-    printf("\n\n\n\t\t\t GENERATIONS COUNT : %d", gen);
+    ui->txtResult->insertPlainText("–\n\n\n USER INPUT : " + _input);
+    ui->txtResult->insertPlainText("\n\n\n THE FITNESS OF THE GA GENERATED WORD AND THE USER’S INPUT");
+    ui->txtResult->insertPlainText("\n\n " + QString::number(pfit[0]) + "/" + QString::number(_input.length()));
+    ui->txtResult->insertPlainText("\n\n\n GENERATIONS COUNT : " + QString::number(gen));
 }
 
-int WordMatchingProblem::inputChoice()
+void WordMatchingProblem::inputChoice()
 {
-    int choice, i;
-    clrscr();
-    printf("\n\n\n\n\t\t\t GENEREATION NUMBER : %d", gen);
-    printf("\n\t\t –––––––––––––––");
-    printf("\n\n\n\t\tTHE FITTEST INDIVIDUAL TILL THE PREVIOUS GENERATION\n\n\n\t\t\t\t");
+    ui->txtResult->insertPlainText("\n\n\n\n GENEREATION NUMBER : " + QString::number(gen));
+    ui->txtResult->insertPlainText("\n –––––––––––––––");
+    ui->txtResult->insertPlainText("\n\n\nTHE FITTEST INDIVIDUAL TILL THE PREVIOUS GENERATION\n\n\n");
 
-    for (i = 0; i < strlen(input); i++) {
-        printf("%c", parent[0][i]);
+    for (int i = 0; i < _input.length(); i++) {
+        ui->txtResult->insertPlainText(QString (_parent[0][i]));
     }
 
-    printf(" / ");
+    ui->txtResult->insertPlainText(" / ");
 
-    for (i = 0; i < strlen(input); i++) {
-        printf("%c", input[i]);
+    for (int i = 0; i < _input.length(); i++) {
+        ui->txtResult->insertPlainText(QString (_input[i]));
     }
 
-    printf("\n\n\n\t\t\t WITH A FITNESS OF %d/%d", pfit[0], strlen(input));
-    printf("\n\n\n\n\t\tENTER YOUR CHOICE (TO CONTINUE 1 TO EXIT 0) : ");
-    scanf("%d", &choice);
-    return choice;
+    ui->txtResult->insertPlainText("\n\n\n WITH A FITNESS OF " + QString::number(pfit[0]) + "/" + QString::number(_input.length()));
+}
+
+void WordMatchingProblem::on_btnRun_clicked()
+{
+    execute();
 }

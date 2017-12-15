@@ -9,6 +9,8 @@
 #include "wordmatchingproblem.h"
 #include "prisonerdilemma.h"
 
+#include "quadraticequationsolving.h"
+
 using namespace GeneticAlgorithm;
 
 GAApplication::GAApplication(QWidget *parent) :
@@ -160,4 +162,26 @@ void GAApplication::on_actionWord_Matching_Problem_triggered()
     WordMatchingProblem *word = new WordMatchingProblem(this);
 
     this->addTab("WMP", word);
+}
+
+void GAApplication::on_actionQuadratic_Equation_Solving_triggered()
+{
+    QuadraticEquationSolving *equation = new QuadraticEquationSolving(this);
+
+    this->addTab("QES", equation);
+}
+
+void GAApplication::on_actionMaximize_f_x_x_triggered()
+{
+    //
+}
+
+void GAApplication::on_actionMinimization_a_Sine_Function_with_Constraints_triggered()
+{
+    //
+}
+
+void GAApplication::on_actionMximizing_the_Function_f_x_x_sin_10_x_10_triggered()
+{
+    //
 }

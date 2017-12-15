@@ -23,6 +23,9 @@ public:
 
     void execute();
 
+private slots:
+    void on_btnRun_clicked();
+
 private:
     int calculate(int*);
     void crossover(int*, int*);

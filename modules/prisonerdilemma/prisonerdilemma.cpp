@@ -26,6 +26,8 @@ QString PrisonerDilemma::name()
 
 void PrisonerDilemma::execute()
 {
+    ui->txtResult->clear();
+
     int a[10][70], selectString[5][70];
     int bestString[20][70], max, ind = 0;
     int counter = 1;
@@ -219,4 +221,9 @@ void PrisonerDilemma::crossover(int *ptr1, int *ptr2)
         ptr1[i] = ptr2[i];
         ptr2[i] = temp;
     }
+}
+
+void PrisonerDilemma::on_btnRun_clicked()
+{
+    execute();
 }

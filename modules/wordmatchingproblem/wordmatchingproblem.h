@@ -23,21 +23,21 @@ public:
 
     void execute();
 
+private slots:
+    void on_btnRun_clicked();
+
 private:
     Ui::WordMatchingProblem *ui;
 
     QString _input;
-    QStringList _parent;
-    QStringList _child;
-    QStringList _mating_pool;
 
-    QStringList _mutant;
+    QChar _parent[50][15], _child[50][15], _mating_pool[105][15], _mutant[5][15];
 
-    int pfit[50], cfit[50], fit[105], mfit[05];
+    int pfit[50], cfit[50], fit[105], mfit[5];
 
     int gen;
 
-    int inputChoice();
+    void inputChoice();
     void results();
     void mutation();
     void crossover();

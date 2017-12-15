@@ -89,6 +89,12 @@ unix: LIBS += -L$$OUT_PWD/../../modules/wordmatchingproblem/ -lwordmatchingprobl
 INCLUDEPATH += $$PWD/../../modules/wordmatchingproblem
 DEPENDPATH += $$PWD/../../modules/wordmatchingproblem
 
+win32:LIBS += -L$$OUT_PWD/../../dist/bin/ -lquadraticequationsolving
+unix: LIBS += -L$$OUT_PWD/../../modules/quadraticequationsolving/ -lquadraticequationsolving
+
+INCLUDEPATH += $$PWD/../../modules/quadraticequationsolving
+DEPENDPATH += $$PWD/../../modules/quadraticequationsolving
+
 win32:RC_FILE = gaapplication.rc
 
 RESOURCES += \
