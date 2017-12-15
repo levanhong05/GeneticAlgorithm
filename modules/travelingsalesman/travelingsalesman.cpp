@@ -11,6 +11,25 @@ TravelingSalesman::TravelingSalesman(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->txtNumberGeneration->setValidator(new QIntValidator(1, INT_MAX));
+
+    gen = 0;
+}
+
+TravelingSalesman::~TravelingSalesman()
+{
+    delete ui;
+}
+
+QString GeneticAlgorithm::TravelingSalesman::name()
+{
+    return tr("Traveling Salesman Problem");
+}
+
+void TravelingSalesman::execute()
+{
+    int index = 0;
+
     _tsp.push_back({999, 10, 3, 2, 5, 6, 7, 2, 5, 4});
     _tsp.push_back({20, 999, 3, 5, 10, 2, 8, 1, 15, 6});
     _tsp.push_back({10, 5, 999, 7, 8, 3, 11, 12, 3, 2});
@@ -31,66 +50,66 @@ TravelingSalesman::TravelingSalesman(QWidget *parent) :
         _pa.push_back({0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
     }
 
-    ui->txtNumberGeneration->setValidator(new QIntValidator(1, INT_MAX));
+    mincost = 9999;
 
-    gen = 0;
-}
+    row = 0;
 
-TravelingSalesman::~TravelingSalesman()
-{
-    delete ui;
-}
+    numoff = 4;
 
-QString GeneticAlgorithm::TravelingSalesman::name()
-{
-    return tr("Traveling Salesman Problem");
-}
+    mc = 0;
+    row1 = 0;
+    col1 = 0;
+    loc = 0;
 
-void TravelingSalesman::execute()
-{
     ui->txtResult->clear();
 
     offcal1(_pa);
     offcal2(_pa);
 
-    ui->txtResult->insertPlainText("First Generation\n");
+    ui->txtResult->insertPlainText("Generation 1\n");
 
     for (int i = 0; i < count; i++) {
         for (int j = 0; j < 10; j++) {
-            ui->txtResult->insertPlainText(QString::number(offspring[i][j]) + " ");
+            ui->txtResult->insertPlainText(QString::number(offspring[i][j]) + "     ");
         }
 
         ui->txtResult->insertPlainText("\n");
     }
 
-    for (int y = 1; y <= gen - 1; y++) {
-        for (int i = 0; i < count; i++)
+    index = count;
+
+    for (int y = 1; y < gen; y++) {
+        for (int i = 0; i < count; i++) {
             for (int j = 0; j < 10; j++) {
                 _pa[i][j] = offspring[i][j];
             }
+        }
 
         numoff = count;
+
         offcal1(_pa);
         offcal2(_pa);
 
-        ui->txtResult->insertPlainText("\n" + QString::number(y + 1) + " Generation\n");
+        ui->txtResult->insertPlainText("\nGeneration " + QString::number(y + 1) + "\n");
 
-        for (int i = 0; i < count; i++) {
+        for (int i = index; i < count; i++) {
             for (int j = 0; j < 10; j++) {
-                ui->txtResult->insertPlainText(QString::number(offspring[i][j]) + " ");
+                ui->txtResult->insertPlainText(QString::number(offspring[i][j]) + "     ");
             }
 
             ui->txtResult->insertPlainText("\n");
         }
+
+        index = count;
     }
 
     ui->txtResult->insertPlainText("\n\nMinimum Cost Path\n");
 
     for (int z = 0; z < 10; z++) {
-        ui->txtResult->insertPlainText(QString::number(res[0][z]) + " ");
+        ui->txtResult->insertPlainText(QString::number(res[0][z]) + "     ");
     }
 
-    ui->txtResult->insertPlainText("\nMinimum Cost " + QString::number(mincost) + "\n");
+    ui->txtResult->insertPlainText("\n\nMinimum Cost:\t" + QString::number(mincost) + "\n");
 }
 
 /* finding the offspring using cyclic crossover */
@@ -98,25 +117,26 @@ void TravelingSalesman::offcal1(QList<QList<int> > pa)
 {
     count = 0;
 
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < 1000; i++) {
         for (int j = 0; j < 10; j++) {
             offspring[i][j] = -1;
         }
+    }
 
     for (int k = 0; k < numoff; k++) {
         for (int l = k + 1; l < numoff; l++) {
             offspring[row][0] = pa[k][0];
             loc = pa[l][0];
-            flag = 1;
+            bool flag = true;
 
-            while (flag != 0) {
+            while (flag) {
                 for (int j = 0; j < 10; j++) {
                     if (pa[k][j] == loc) {
                         if (offspring[row][j] == -1) {
                             offspring[row][j] = loc;
                             loc = pa[l][j];
                         } else {
-                            flag = 0;
+                            flag = false;
                         }
                     }
                 }
@@ -160,16 +180,16 @@ void TravelingSalesman::offcal2(QList<QList<int> > pa)
         for (int l = k + 1; l < numoff; l++) {
             offspring[row][0] = pa[l][0];
             loc = pa[k][0];
-            flag = 1;
+            bool flag = true;
 
-            while (flag != 0) {
+            while (flag) {
                 for (int j = 0; j < 10; j++) {
                     if (pa[l][j] == loc) {
                         if (offspring[row][j] == -1) {
                             offspring[row][j] = loc;
                             loc = pa[k][j];
                         } else {
-                            flag = 0;
+                            flag = false;
                         }
                     }
                 }

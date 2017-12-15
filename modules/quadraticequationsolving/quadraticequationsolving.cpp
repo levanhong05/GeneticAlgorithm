@@ -33,9 +33,9 @@ void QuadraticEquationSolving::execute()
     }
 
     /* start of the next generation */
-    gen = 1;
+    int index = 0;
 
-    while (1) {
+    while (index < gen) {
         /* Converting a binary string into decimal value */
         for (int i = 0; i < 10; ++i) {
             num = 0;
@@ -53,31 +53,38 @@ void QuadraticEquationSolving::execute()
             ipop[i].fittness = function(ipop[i].decimal_val);
         }
 
-        ui->txtResult->insertPlainText("Generation- " + QString::number(gen) + "\n");
-        ui->txtResult->insertPlainText("Initial population- output\n");
+        ui->txtResult->insertPlainText("\n\n\nGeneration " + QString::number(index) + "\n");
+        ui->txtResult->insertPlainText("\nInitial population - output\n");
 
         for (int i = 0; i < 10; ++i) {
             for (int j = 4; j >= 0; --j) {
                 ui->txtResult->insertPlainText(QString::number(ipop[i].chromosome[j]));
             }
 
-            ui->txtResult->insertPlainText(" " + QString::number(ipop[i].decimal_val));
-            ui->txtResult->insertPlainText(" " + QString::number(ipop[i].fittness));
+            ui->txtResult->insertPlainText("         " + QString::number(ipop[i].decimal_val));
+            ui->txtResult->insertPlainText("         " + QString::number(ipop[i].fittness));
             ui->txtResult->insertPlainText("\n");
         }
 
         for (int i = 0; i < 10; ++i) {
             if (ipop[i].fittness == 0) {
-                ui->txtResult->insertPlainText("Stop generations\n");
-                ui->txtResult->insertPlainText("result = " + QString::number(ipop[i].decimal_val) +"\n");
+                ui->txtResult->insertPlainText("\nStop generations\n");
+                ui->txtResult->insertPlainText("Result = " + QString::number(ipop[i].decimal_val) +"\n");
 
-                ui->txtResult->insertPlainText("end\n");
+                ui->txtResult->insertPlainText("End\n");
                 return;
             }
         }
 
+        if (index == gen - 1) {
+            ui->txtResult->insertPlainText("\nStop generations\n");
+            ui->txtResult->insertPlainText("Result = Can not found root.\nEnd\n");
+
+            return;
+        }
+
         /* tournament selection */
-        ui->txtResult->insertPlainText("tournament selection\n ");
+        ui->txtResult->insertPlainText("\nTournament selection\n ");
 
         int i = 0;
 
@@ -100,7 +107,7 @@ void QuadraticEquationSolving::execute()
             i++;
         }
 
-        ui->txtResult->insertPlainText("New population -output\n");
+        ui->txtResult->insertPlainText("\nNew population - output\n");
 
         for (int i = 0; i < 10; ++i) {
             for (int j = 4; j >= 0; --j) {
@@ -111,8 +118,8 @@ void QuadraticEquationSolving::execute()
         }
 
         /*crossover operation */
-        ui->txtResult->insertPlainText("crossover operation\n");
-        ui->txtResult->insertPlainText("left/right cut-point position\n");
+        ui->txtResult->insertPlainText("\nCrossover operation\n");
+        ui->txtResult->insertPlainText("\nLeft/right cut-point position\n");
 
         for (int i = 0; i <= 4; ++i) {
             flag = qrand() % 2;
@@ -154,7 +161,7 @@ void QuadraticEquationSolving::execute()
             }
         }
 
-        gen = gen + 1;
+        index++;
     }
 }
 
@@ -165,5 +172,15 @@ int QuadraticEquationSolving::function(int x)
 
 void QuadraticEquationSolving::on_btnRun_clicked()
 {
-    execute();
+    bool ok = false;
+
+    gen = ui->txtNumberGeneration->text().toInt(&ok);
+
+    if (!ok) {
+        gen = 0;
+    }
+
+    if (gen > 0) {
+        execute();
+    }
 }

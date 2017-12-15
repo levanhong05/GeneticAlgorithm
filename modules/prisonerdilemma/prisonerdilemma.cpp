@@ -28,6 +28,18 @@ void PrisonerDilemma::execute()
 {
     ui->txtResult->clear();
 
+    for (int i = 0; i < 6; i++) {
+        index[i] = 0;
+    }
+
+    for (int i = 0; i < 20; i++) {
+        bestScore[i] = 0;
+    }
+
+    for (int i = 0; i < 9; i++) {
+        score[i] = 0;
+    }
+
     int a[10][70], selectString[5][70];
     int bestString[20][70], max, ind = 0;
     int counter = 1;
@@ -101,7 +113,7 @@ void PrisonerDilemma::execute()
 
         for (int j = 0; j < 70; j++) {
             if (j % 2 == 0 && j != 0) {
-                ui->txtResult->insertPlainText(" ");
+                ui->txtResult->insertPlainText("     ");
             }
 
             if (bestString[i][j] == 1) {
@@ -134,7 +146,7 @@ void PrisonerDilemma::execute()
 
     for (int i = 0; i < 70; i++) {
         if (i % 2 == 0 && i != 0) {
-            ui->txtResult->insertPlainText(" ");
+            ui->txtResult->insertPlainText("     ");
         }
 
         if (bestString[ind][i] == 1) {

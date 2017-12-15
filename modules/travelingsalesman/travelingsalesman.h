@@ -38,11 +38,11 @@ private:
     QList<QList<int> > _tsp;
     QList<QList<int> > _pa;
 
-    int loc, flag, col, it, x = 3, y = 3;
-    int count, row = 0, res[1][10], row1, col1;
-    int numoff = 4;
+    int loc;
+    int count, row, res[1][10], row1, col1;
+    int numoff;
     int offspring[1000][10];
-    int mincost = 9999, mc;
+    int mincost, mc;
 
     int gen;
 };

@@ -57,6 +57,9 @@
      <string>Calculate</string>
     </property>
     <widget class="QMenu" name="menuProjects">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="title">
       <string>Projects</string>
      </property>
@@ -172,6 +175,9 @@
    </property>
   </action>
   <action name="actionWord_Matching_Problem">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Word Matching Problem</string>
    </property>
@@ -182,16 +188,25 @@
    </property>
   </action>
   <action name="actionMaximize_f_x_x">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Maximize f(x)=x²</string>
    </property>
   </action>
   <action name="actionMinimization_a_Sine_Function_with_Constraints">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Minimization a Sine Function with Constraints</string>
    </property>
   </action>
   <action name="actionMximizing_the_Function_f_x_x_sin_10_x_10">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Mximizing the Function f(x)=x*sin(10*Π*x)+10</string>
    </property>
